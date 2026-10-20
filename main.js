@@ -120,7 +120,7 @@ const fisheyeFragmentShader = `
 
     // Circular lens aperture clipping
     if (sr > maxR) {
-      gl_FragColor = vec4(0.047, 0.047, 0.047, 1.0);
+      gl_FragColor = vec4(0.7686, 0.7686, 0.7686, 1.0);
       return;
     }
 
@@ -139,7 +139,7 @@ const fisheyeFragmentShader = `
     
     // Peripheral lens vignetting when curved
     float vig = smoothstep(maxR, maxR * 0.86, sr);
-    vec3 col = mix(toDisplay(c.rgb) * mix(1.0, vig, uAmount * 0.4), vec3(0.047), (1.0 - vig) * uAmount * 0.65);
+    vec3 col = mix(toDisplay(c.rgb) * mix(1.0, vig, uAmount * 0.4), vec3(0.7686), (1.0 - vig) * uAmount * 0.65);
 
     gl_FragColor = vec4(col, c.a);
   }
@@ -266,12 +266,12 @@ class RemyGallery {
     });
     this.renderer.setSize(this.width, this.height);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    this.renderer.setClearColor(0x0c0c0c, 1);
+    this.renderer.setClearColor(0xc4c4c4, 1);
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.container.appendChild(this.renderer.domElement);
 
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x0c0c0c);
+    this.scene.background = new THREE.Color(0xc4c4c4);
 
     this.camera = new THREE.PerspectiveCamera(FISHEYE_FOV, this.width / this.height, 0.1, 1000);
     this.camera.position.set(0, 0, FISHEYE_CAM_Z);
